@@ -4,9 +4,8 @@ import Select from "./Select"
 
 const TransactionsList = (props) => {
   let componentArray = props.transactions.map(transactionObj => {
-    return <Transaction key={transactionObj.id} transaction={transactionObj} deleteTransactionFun={props.deleteTransactionFun} />
+    return <Transaction key={transactionObj.id} transaction={transactionObj} dltTransactionFun={props.dltTransactionFun} />
   })
-
 
   return (
     <table className="ui celled striped padded table">

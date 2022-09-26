@@ -13,7 +13,7 @@ class AccountContainer extends Component {
 
   componentDidMount() {
     fetch('http://localhost:8001/transactions')
-      .then(r => r.json())
+      .then(response => response.json())
       .then(response => {
         this.setState({
           transactions: response
@@ -29,9 +29,9 @@ class AccountContainer extends Component {
     })
   }
 
-  deleteTransactionFun = (deletedTransaction) => {
+  dltTransactionFun = (dltdTransaction) => {
     let newTransArr = this.state.transactions.filter(transaction => {
-      return transaction.id !== deletedTransaction.id
+      return transaction.id !== dltdTransaction.id
     })
 
     this.setState({
@@ -55,44 +55,24 @@ class AccountContainer extends Component {
       case "all":
         return filterSearch;
 
-      case "descriptionUP":
-        return filterSearch.sort((wordA, wordB) => {
-          return wordA.description.localeCompare(wordB.description)
+      case "descriptionAsc":
+        return filterSearch.sort((A, B) => {
+          return A.description.localeCompare(B.description)
         });
 
       case "descriptionDOWN":
-        return filterSearch.sort((wordA, wordB) => {
-          return wordB.description.localeCompare(wordA.description)
+        return filterSearch.sort((A, B) => {
+          return B.description.localeCompare(A.description)
         });
 
-      case "categoryUP":
-        return filterSearch.sort((wordA, wordB) => {
-          return wordA.category.localeCompare(wordB.category)
+      case "categoryAsc":
+        return filterSearch.sort((A, B) => {
+          return A.category.localeCompare(B.category)
         });
 
-      case "categoryDOWN":
-        return filterSearch.sort((wordA, wordB) => {
-          return wordB.category.localeCompare(wordA.category)
-        });
-
-      case "amountUP":
-        return filterSearch.sort((numA, numB) => {
-          return numA.amount - numB.amount
-        });
-
-      case "amountDOWN":
-        return filterSearch.sort((numA, numB) => {
-          return numB.amount - numA.amount
-        });
-
-      case "dateUP":
-        return filterSearch.sort((numA, numB) => {
-          return new Date(numA.date) - new Date(numB.date)
-        });
-
-      case "dateDOWN":
-        return filterSearch.sort((numA, numB) => {
-          return new Date(numB.date) - new Date(numA.date)
+      case "categoryDsc":
+        return filterSearch.sort((A, B) => {
+          return B.category.localeCompare(A.category)
         });
 
       default:
@@ -102,20 +82,13 @@ class AccountContainer extends Component {
   render() {
     return (
       <div>
-        <Search
-          searchValue={this.state.search}
-          searchFun={this.searchFun}
-        />
-
-        <AddTransactionForm
-          addTransactionFun={this.addTransactionFun}
-        />
-
+        <Search searchValue={this.state.search} searchFun={this.searchFun} />
+        <AddTransactionForm addTransactionFun={this.addTransactionFun} />
         <TransactionsList
           transactions={this.filterSearchTransactions()}
           select={this.state.select}
           selectFun={this.selectFun}
-          deleteTransactionFun={this.deleteTransactionFun}
+          dltTransactionFun={this.dltTransactionFun}
         />
       </div>
     );

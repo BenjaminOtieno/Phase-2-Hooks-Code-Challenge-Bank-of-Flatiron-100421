@@ -9,14 +9,10 @@ const Select = (props) => {
         <div>
             <select value={props.select} onChange={handleSelect}>
                 <option value={"all"}>All</option>
-                <option value={"descriptionUP"}>Sort by description (ASC)</option>
-                <option value={"descriptionDOWN"}>Sort by description (DESC)</option>
-                <option value={"categoryUP"}>Sort by category (ASC)</option>
-                <option value={"categoryDOWN"}>Sort by category (DESC)</option>
-                <option value={"amountUP"}>Sort by amount (ASC)</option>
-                <option value={"amountDOWN"}>Sort by amount (DESC)</option>
-                <option value={"dateUP"}>Sort by date (ASC)</option>
-                <option value={"dateDOWN"}>Sort by date (DESC)</option>
+                <option value={"descriptionAsc"}>Sort by description [+]</option>
+                <option value={"descriptionDsc"}>Sort by description [-]</option>
+                <option value={"categoryAsc"}>Sort by category [+]</option>
+                <option value={"categoryDsc"}>Sort by category [-]</option>
             </select>
         </div>
     )

@@ -24,21 +24,21 @@ class AddTransactionForm extends Component {
         amount: this.state.amount
       })
     })
-    .then(r => r.json())
-    .then(addTransaction => {
-      this.props.addTransactionFun(addTransaction)
-      this.setState({
-        date: "",
-        description: "",
-        category: "",
-        amount: ""
+      .then(response => response.json())
+      .then(addTransaction => {
+        this.props.addTransactionFun(addTransaction)
+        this.setState({
+          date: "",
+          description: "",
+          category: "",
+          amount: ""
+        })
       })
-    })
   }
 
   handleChange = (event) => {
     this.setState({
-      [event.target.name] : event.target.value
+      [event.target.name]: event.target.value
     })
   }
 
@@ -47,23 +47,24 @@ class AddTransactionForm extends Component {
       <div className="ui segment">
         <form className="ui form" onSubmit={this.handleSubmit}>
           <div className="inline fields">
-            <input 
-              type="date" 
-              name="date" 
+            <input
+              type="date"
+              name="date"
               value={this.state.date}
               onChange={this.handleChange}
             />
-            <input 
-              type="text" 
-              name="description" 
-              placeholder="Description" 
+            <input
+              type="text"
+              name="description"
+              placeholder="Description"
               value={this.state.description}
               onChange={this.handleChange}
+
             />
-            <input 
-              type="text" 
-              name="category" 
-              placeholder="Category" 
+            <input
+              type="text"
+              name="category"
+              placeholder="Category"
               value={this.state.category}
               onChange={this.handleChange}
             />
@@ -76,7 +77,7 @@ class AddTransactionForm extends Component {
               onChange={this.handleChange}
             />
           </div>
-          <button className="ui button" type="submit" > 
+          <button className="ui button" type="submit" >
             Add Transaction
           </button>
         </form>
